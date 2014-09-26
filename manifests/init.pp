@@ -3,7 +3,8 @@ class dotdotdot(
 ) {
   repository { 'dotdotdot repo':
     path    => "/Users/${::boxen_user}/...",
-    source  => 'ingydotnet/...'
+    source  => 'ingydotnet/...',
+    require => Git::Config::Global['credential.helper']
   }
 
   exec { 'dotdotdot config':
