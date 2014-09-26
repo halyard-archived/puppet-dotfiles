@@ -31,4 +31,5 @@ class dotdotdot(
       Package['tmux'],
       Package['vim'],
     ]
+  }
 }
