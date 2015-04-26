@@ -15,7 +15,8 @@ class dotdotdot(
 
   exec { 'dotdotdot update':
     command => "/Users/${::boxen_user}/.../... update",
-    require => Exec['dotdotdot config']
+    require => Exec['dotdotdot config'],
+    group => 'staff'
   }
 
   exec { 'dotdotdot install':
