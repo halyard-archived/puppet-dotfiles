@@ -21,7 +21,8 @@ class dotdotdot(
 
   exec { 'dotdotdot install':
     command => "/Users/${::boxen_user}/.../... install",
-    require => Exec['dotdotdot update']
+    require => Exec['dotdotdot update'],
+    provider => 'shell'
   }
 
   exec { 'vundle install':
