@@ -26,7 +26,7 @@ class dotdotdot(
   }
 
   exec { 'vundle install':
-    command => "${boxen::config::home}/bin/tmux new-session -d -s vundle '${boxen::config::home}/bin/vim -E -c BundleInstall -c qall'",
+    command => "${boxen::config::home}/homebrew/bin/tmux new-session -d -s vundle '${boxen::config::home}/bin/vim -E -c BundleInstall -c qall'",
     creates => "/Users/${::boxen_user}/.vim/bundle/DetectIndent/README",
     require => [
       Exec['dotdotdot install'],
