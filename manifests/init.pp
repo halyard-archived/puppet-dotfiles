@@ -1,37 +1,40 @@
-class dotdotdot(
-  $source = "/Users/${::boxen_user}/.dotdotdot.conf"
+class dotfiles (
+  $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf"
 ) {
+
+  $homedir = dotfiles::homedir($::id)
+
   repository { 'dotdotdot repo':
-    path    => "/Users/${::boxen_user}/...",
+    path    => "${homedir}/...",
     source  => 'ingydotnet/...',
     require => Git::Config::Global['credential.helper']
   }
 
   exec { 'dotdotdot config':
-    command => "/Users/${::boxen_user}/.../... conf ${source}",
-    creates => "/Users/${::boxen_user}/.../conf",
+    command => "${homedir}/.../... conf ${source}",
+    creates => "${homedir}/.../conf",
     require => Repository['dotdotdot repo']
   }
 
   exec { 'dotdotdot update':
-    command => "/Users/${::boxen_user}/.../... update",
+    command => "${homedir}/.../... update",
     require => Exec['dotdotdot config'],
     provider => 'shell'
   }
 
   exec { 'dotdotdot install':
-    command => "/Users/${::boxen_user}/.../... install",
+    command => "${homedir}/.../... install",
     require => Exec['dotdotdot update'],
     provider => 'shell'
   }
 
-  exec { 'vundle install':
-    command => "${boxen::config::home}/homebrew/bin/tmux new-session -d -s vundle '${boxen::config::home}/bin/vim -E -c BundleInstall -c qall'",
-    creates => "/Users/${::boxen_user}/.vim/bundle/DetectIndent/README",
-    require => [
-      Exec['dotdotdot install'],
-      Package['tmux'],
-      Package['vim'],
-    ]
-  }
+  #exec { 'vundle install':
+  #  command => "${boxen::config::home}/homebrew/bin/tmux new-session -d -s vundle '${boxen::config::home}/bin/vim -E -c BundleInstall -c qall'",
+  #  creates => "/Users/${::boxen_user}/.vim/bundle/DetectIndent/README",
+  #  require => [
+  #    Exec['dotdotdot install'],
+  #    Package['tmux'],
+  #    Package['vim'],
+  #  ]
+  #}
 }
