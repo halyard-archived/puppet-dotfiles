@@ -1,8 +1,7 @@
 class dotfiles (
   $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf"
 ) {
-
-  $homedir = dotfiles::homedir($::id)
+  $homedir = dotfiles::homedir($::boxen_user)
 
   repository { 'dotdotdot repo':
     path    => "${homedir}/...",
