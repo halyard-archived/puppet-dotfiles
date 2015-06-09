@@ -3,6 +3,13 @@ class dotfiles (
 ) {
   $homedir = dotfiles::homedir($::boxen_user)
 
+  package { [
+    'bash',
+    'bash-completion',
+    'ctags',
+    'tree'
+  ]: }
+
   repository { 'dotdotdot repo':
     path    => "${homedir}/...",
     source  => 'ingydotnet/...',
