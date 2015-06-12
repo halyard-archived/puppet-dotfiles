@@ -10,6 +10,11 @@ class dotfiles (
     'tree'
   ]: }
 
+  package { 'font-meslo-lg-for-powerline-halyard':
+    provider => 'brewcask',
+    require  => Homebrew::Tap['halyard/casks']
+  }
+
   repository { 'dotdotdot repo':
     path    => "${homedir}/...",
     source  => 'ingydotnet/...',
