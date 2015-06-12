@@ -15,6 +15,8 @@ class dotfiles (
     require  => Homebrew::Tap['halyard/casks']
   }
 
+  ruby_gem { ['hss', 'gist']: }
+
   repository { 'dotdotdot repo':
     path    => "${homedir}/...",
     source  => 'ingydotnet/...',
