@@ -32,6 +32,7 @@ class dotfiles (
     provider => 'shell'
   } ~>
   exec { 'vundle install':
-    command => "vim +PluginInstall +qall",
+    command     => "vim +PluginInstall +qall",
+    refreshonly => true
   }
 }
