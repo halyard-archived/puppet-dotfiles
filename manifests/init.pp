@@ -28,7 +28,7 @@ class dotfiles (
   } ->
   exec { 'dotdotdot upgrade':
     command  => "${homedir}/.../... update",
-    schedule => 'daily'
+    schedule => 'daily',
     provider => 'shell'
   } ~>
   exec { 'vundle install':
