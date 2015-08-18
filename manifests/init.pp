@@ -27,11 +27,11 @@ class dotfiles (
     creates => "${homedir}/.../conf"
   } ->
   exec { 'dotdotdot upgrade':
-    command => "${homedir}/.../... update",
+    command  => "${homedir}/.../... update",
+    schedule => 'daily'
     provider => 'shell'
-  } ->
+  } ~>
   exec { 'vundle install':
     command => "vim +PluginInstall +qall",
-    creates => "${homedir}/.vim/bundle/DetectIndent/README"
   }
 }
