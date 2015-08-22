@@ -26,6 +26,9 @@ class dotfiles (
     command => "${homedir}/.../... conf ${source}",
     creates => "${homedir}/.../conf"
   } ->
+  file { "${homedir}/.../backup":
+    ensure => directory
+  } ->
   exec { 'dotdotdot upgrade':
     command  => "${homedir}/.../... upgrade",
     schedule => 'daily',
