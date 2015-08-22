@@ -29,7 +29,7 @@ class dotfiles (
   file { "${homedir}/.../backup":
     ensure => directory
   } ->
-  exec { 'dotdotdot upgrade':
+  exec { 'dotfile upgrade':
     command  => "${homedir}/.../... upgrade",
     schedule => 'daily',
     provider => 'shell'
