@@ -27,7 +27,7 @@ class dotfiles (
     creates => "${homedir}/.../conf"
   } ->
   exec { 'dotdotdot upgrade':
-    command  => "${homedir}/.../... update",
+    command  => "${homedir}/.../... upgrade",
     schedule => 'daily',
     provider => 'shell'
   } ~>
