@@ -1,0 +1,22 @@
+{
+  "name": "halyard-dotfiles",
+  "version": "0.1.0",
+  "author": "Les Aker",
+  "license": "MIT",
+  "summary": "Configure dotfiles via Boxen",
+  "source": "https://github.com/halyard/puppet-dotfiles",
+  "project_page": "https://github.com/halyard/puppet-dotfiles",
+  "issues_url": "https://github.com/halyard/puppet-dotfiles/issues",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Darwin",
+      "operatingsystemmajrelease": [
+        "14",
+        "15"
+      ]
+    }
+  ]
+}
