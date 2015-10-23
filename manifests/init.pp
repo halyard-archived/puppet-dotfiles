@@ -7,7 +7,6 @@ class dotfiles (
   package { [
     'bash',
     'bash-completion',
-    'ctags',
     'tree'
   ]: }
 
