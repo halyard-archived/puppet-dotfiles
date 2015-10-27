@@ -19,7 +19,7 @@ class dotfiles (
 
   repository { 'dotdotdot repo':
     path    => "${homedir}/...",
-    source  => 'ingydotnet/...',
+    source  => 'akerl/...',
     require => Git::Config::Global['credential.helper']
   } ->
   exec { 'dotdotdot config':
