@@ -7,8 +7,11 @@ class dotfiles (
   package { [
     'bash',
     'bash-completion',
-    'tree'
-  ]: }
+    'tree',
+    'pick-halyard'
+  ]:
+    require => Homebrew::Tap['halyard/formulae']
+  }
 
   package { 'font-meslo-lg-for-powerline-halyard':
     provider => 'brewcask',
