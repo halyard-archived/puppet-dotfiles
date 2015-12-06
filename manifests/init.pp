@@ -3,6 +3,7 @@ class dotfiles (
   $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf"
 ) {
   $homedir = dotfiles::homedir($::boxen_user)
+  $ddd = "${homedir}/..."
 
   package { [
     'bash',
@@ -21,18 +22,18 @@ class dotfiles (
   ruby_gem { ['hss', 'gist']: }
 
   repository { 'dotdotdot repo':
-    path    => "${homedir}/...",
+    path    => $ddd,
     source  => 'akerl/...',
     require => Git::Config::Global['credential.helper']
   } ->
   exec { 'dotdotdot config':
-    command => "${homedir}/.../... conf ${source}",
-    creates => "${homedir}/.../conf"
+    command => "${ddd}/... conf ${source}",
+    creates => "${ddd}/.../conf"
   } ->
   exec { 'dotfile upgrade':
-    command  => "${homedir}/.../... upgrade",
-    schedule => 'daily',
-    provider => 'shell'
+    command  => "${ddd}/... install",
+    provider => 'shell',
+    onlyif   => "${ddd}/... super_update 2>&1 | grep '^From'"
   } ~>
   exec { 'vundle install':
     command     => 'vim +PluginInstall +qall',
