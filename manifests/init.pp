@@ -27,8 +27,9 @@ class dotfiles (
     require => Git::Config::Global['credential.helper']
   } ->
   exec { 'dotdotdot config':
-    command => "${ddd}/... conf ${source}",
-    creates => "${ddd}/.../conf"
+    command  => "${ddd}/... conf ${source}",
+    creates  => "${ddd}/.../conf",
+    provider => 'shell'
   } ->
   exec { 'dotfile upgrade':
     command  => "${ddd}/... install",
