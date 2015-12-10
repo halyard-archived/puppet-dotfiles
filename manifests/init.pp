@@ -28,7 +28,7 @@ class dotfiles (
   } ->
   exec { 'dotdotdot config':
     command  => "${ddd}/... conf ${source}",
-    creates  => "${ddd}/.../conf",
+    creates  => "${ddd}/conf",
     provider => 'shell'
   } ->
   exec { 'dotfile upgrade':
