@@ -2,7 +2,7 @@
 class dotfiles (
   $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf"
 ) {
-  $homedir = dotfiles::homedir($::boxen_user)
+  $homedir = dotfiles::homedir($::user)
   $ddd = "${homedir}/..."
 
   package { [
@@ -20,6 +20,12 @@ class dotfiles (
   }
 
   ruby_gem { ['hss', 'gist']: }
+
+  file { '/usr/local/bin':
+    ensure => directory,
+    owner  => $::user,
+    group  => 'staff'
+  }
 
   repository { 'dotdotdot repo':
     path    => $ddd,
