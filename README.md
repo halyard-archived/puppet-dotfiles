@@ -22,5 +22,4 @@ include dotdotdot
 
 ## Required Puppet Modules
 
-* `boxen`
 

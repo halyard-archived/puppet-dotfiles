@@ -1,46 +1,28 @@
 # Configure dotfiles using ...
 class dotfiles (
-  $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf"
+  String[1] $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf"
+  String[1] $repo = "https://github.com/ingydotnet/...",
+  String[1] $owner = $facts['id'],
+  String[1] $group = $facts['gid'],
 ) {
   $homedir = dotfiles::homedir($::user)
   $ddd = "${homedir}/..."
+  $bin = "${ddd}/..."
 
-  package { [
-    'bash',
-    'bash-completion',
-    'tree',
-    'pick-halyard'
-  ]:
-    require => Homebrew::Tap['halyard/formulae']
-  }
-
-  package { 'font-meslo-lg-for-powerline-halyard':
-    provider => 'brewcask',
-    require  => Homebrew::Tap['halyard/casks']
-  }
-
-  ruby_gem { ['hss', 'gist']: }
-
-  file { '/usr/local/bin':
-    ensure => directory,
-    owner  => $::user,
-    group  => 'staff'
-  }
-
-  repository { 'dotdotdot repo':
-    path    => $ddd,
-    source  => 'akerl/...',
-    require => Git::Config::Global['credential.helper']
+  vcsrepo { $ddd:
+    ensure   => present,
+    provider => git,
+    source   => $repo,
+    owner    => $owner,
+    group    => $group
   } ->
   exec { 'dotdotdot config':
-    command  => "${ddd}/... conf ${source}",
+    command  => "${bin} conf ${source}",
     creates  => "${ddd}/conf",
-    provider => 'shell'
   } ->
   exec { 'dotfile upgrade':
-    command  => "${ddd}/... install",
-    provider => 'shell',
-    onlyif   => "${ddd}/... super_update 2>&1 | grep '^From'"
+    command  => "${bin} install",
+    onlyif   => "${bin} super_update 2>&1 | grep '^From'"
   } ~>
   exec { 'vundle install':
     command     => 'vim +PluginInstall +qall',
