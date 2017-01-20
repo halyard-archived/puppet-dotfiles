@@ -1,6 +1,6 @@
 {
   "name": "halyard-dotfiles",
-  "version": "0.1.8",
+  "version": "0.2.1",
   "author": "Les Aker",
   "license": "MIT",
   "summary": "Configure dotfiles using dotdotdot",
@@ -8,6 +8,7 @@
   "project_page": "https://github.com/halyard/puppet-dotfiles",
   "issues_url": "https://github.com/halyard/puppet-dotfiles/issues",
   "dependencies": [
+
   ],
   "operatingsystem_support": [
     {
