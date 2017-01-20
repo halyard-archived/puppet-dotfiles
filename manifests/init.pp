@@ -1,6 +1,6 @@
 # Configure dotfiles using ...
 class dotfiles (
-  String[1] $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf"
+  String[1] $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf",
   String[1] $repo = "https://github.com/ingydotnet/...",
   String[1] $owner = $facts['id'],
   String[1] $group = $facts['gid'],
