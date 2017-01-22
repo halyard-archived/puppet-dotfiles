@@ -10,9 +10,9 @@ class dotfiles (
   $bin = "${ddd}/..."
 
   Exec {
-   environment => ["HOME=${homedir}"],
-   user        => $owner,
-   group       => $group
+    environment => ["HOME=${homedir}"],
+    user        => $owner,
+    group       => $group
   }
 
   vcsrepo { $ddd:
