@@ -21,16 +21,16 @@ class dotfiles (
     source   => $repo,
     owner    => $owner,
     group    => $group
-  } ->
-  exec { 'dotdotdot config':
+  }
+  -> exec { 'dotdotdot config':
     command => "${bin} conf ${source}",
     creates => "${ddd}/conf",
-  } ->
-  exec { 'dotfile upgrade':
+  }
+  -> exec { 'dotfile upgrade':
     command => "${bin} install",
     onlyif  => "${bin} super_update 2>&1 | grep -e '^From' -e '^Cloning'"
-  } ~>
-  exec { 'vundle install':
+  }
+  ~> exec { 'vundle install':
     command     => 'vim +PluginInstall +qall',
     refreshonly => true
   }
