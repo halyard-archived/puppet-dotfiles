@@ -30,8 +30,9 @@ class dotfiles (
     command => "${bin} install",
     onlyif  => "${bin} super_update 2>&1 | grep -e '^From' -e '^Cloning'"
   }
-  ~> exec { 'vundle install':
-    command     => 'vim +PluginInstall +qall',
+  ~> exec { 'run dotfile post_upgrade':
+    command     => "${homedir}/.meta/dotfile_post_upgrade",
+    onlyif      => "test -x ${homedir}/.meta/dotfile_post_upgrade",
     refreshonly => true
   }
 }
