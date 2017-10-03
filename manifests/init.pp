@@ -5,7 +5,7 @@ class dotfiles (
   String[1] $owner = $facts['id'],
   String[1] $group = $facts['gid']
 ) {
-  $homedir = dotfiles::homedir($owner)
+  $homedir = $facts['homedirs'][$owner]
   $ddd = "${homedir}/..."
   $bin = "${ddd}/..."
 
