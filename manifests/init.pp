@@ -2,8 +2,8 @@
 class dotfiles (
   String[1] $source = "${dotfiles::homedir($::id)}/.dotdotdot.conf",
   String[1] $repo = 'https://github.com/ingydotnet/...',
-  String[1] $owner = $facts['id'],
-  String[1] $group = $facts['gid']
+  Variant[String[1], Integer] $owner = $facts['id'],
+  Variant[String[1], Integer] $group = $facts['gid']
 ) {
   $homedir = $facts['homedirs'][$owner]
   $ddd = "${homedir}/..."
