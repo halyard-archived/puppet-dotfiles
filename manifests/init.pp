@@ -28,7 +28,7 @@ class dotfiles (
   }
   -> exec { 'dotfile upgrade':
     command => "${bin} install",
-    onlyif  => "${bin} super_update 2>&1 | grep -e '^From' -e '^Cloning'"
+    onlyif  => "${bin} super_update 2>&1 | grep -q 'Cloning into'"
   }
   ~> exec { 'run dotfile post_upgrade':
     command     => "${homedir}/.meta/dotfile_post_upgrade",
